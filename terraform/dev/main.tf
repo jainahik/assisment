@@ -2,7 +2,6 @@ provider "aws" {
     region = "us-east-2"
 }
 
-
 /******************************************
 	VPC Module
 ******************************************/
@@ -59,9 +58,7 @@ module "sec_group" {
       cidr_blocks = "0.0.0.0/0"
     }
   ]
-
 }
-
 
 /******************************************
 	EC2 Module
@@ -82,4 +79,12 @@ module "ec2" {
       echo 'Hello Abhishek' > /var/www/html/index.html
       sudo systemctl start httpd
     EOF
+}
+
+/******************************************
+	Outputs
+******************************************/
+
+output "instance_ip" {
+  value = module.ec2.instance_ip
 }
